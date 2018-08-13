@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using EFCoreConfigProvider;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace EFCoreConfigProvider
+namespace Microsoft.Extensions.Configuration
 {
     public static class ConfigurationBuilderExtensions
     {
@@ -34,12 +34,5 @@ namespace EFCoreConfigProvider
 
             return builder.Add(new EFCoreConfigSource<T>(configProviderOptions.DbContextSetup, configProviderOptions.LoadValuesFromDbAction));
         }
-    }
-
-    public class EFCoreConfigProviderOptions<T>
-    {
-        public Action<DbContextOptionsBuilder> DbContextSetup { get; set; }
-
-        public Func<T, IDictionary<string, string>> LoadValuesFromDbAction { get; set; }
     }
 }
